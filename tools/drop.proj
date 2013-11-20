@@ -43,11 +43,6 @@
 							">
 				<Properties>TargetFrameworkVersion=v4.0</Properties>
 			</ProjectsToBuild>
-
-			<!-- Sandcastle doesn't seem to be able to handle .NET 4.0 dependencies right now. -->
-			<ProjectsToBuild Include="$(ProjectRoot)doc\doc.proj">
-				<Properties>TargetFrameworkVersion=v3.5</Properties>
-			</ProjectsToBuild>
 		</ItemGroup>
 		<MSBuild Projects="@(ProjectsToBuild)"
 						 Properties="%(ProjectsToBuild.Properties)"
@@ -81,31 +76,25 @@
 										 " />
 
 			<DropSourceFiles Include="
-																$(ProjectRoot)Doc\$(ProductName).chm;
-																$(ProjectRoot)Doc\*.htm*;
 																$(ProjectRoot)LICENSE.txt;
 																$(ProjectRoot)CONTRIB.txt;
-																"
-											 Exclude="$(ProjectRoot)Doc\README.*.html;" />
+																" />
 			<DropBin35SourceFiles Include="
 																$(ILMergeOutputAssembly35Directory)$(SignedSubPath)$(ProductName).dll;
 																$(ILMergeOutputAssembly35Directory)$(ProductName).pdb;
 																$(ILMergeOutputAssembly35Directory)$(ProductName).xml;
-																$(ProjectRoot)Doc\README.Bin.html;
 																$(ProjectRoot)src\$(ProductName).Core\Configuration\$(ProductName).xsd;
 													" />
 			<DropBin40SourceFiles Include="
 																$(ILMergeOutputAssembly40Directory)$(SignedSubPath)$(ProductName).dll;
 																$(ILMergeOutputAssembly40Directory)$(ProductName).pdb;
 																$(ILMergeOutputAssembly40Directory)$(ProductName).xml;
-																$(ProjectRoot)Doc\README.Bin.html;
 																$(ProjectRoot)src\$(ProductName).Core\Configuration\$(ProductName).xsd;
 													" />
 			<DropBin45SourceFiles Include="
 																$(ILMergeOutputAssembly45Directory)$(SignedSubPath)$(ProductName).dll;
 																$(ILMergeOutputAssembly45Directory)$(ProductName).pdb;
 																$(ILMergeOutputAssembly45Directory)$(ProductName).xml;
-																$(ProjectRoot)Doc\README.Bin.html;
 																$(ProjectRoot)src\$(ProductName).Core\Configuration\$(ProductName).xsd;
 													" />
 			<DropSatelliteSourceFiles Include="$(OutputPath)**\$(SignedSubPath)$(ProductName).resources.dll" />
@@ -144,7 +133,6 @@
 			<DropSamplesSourceFiles Include="$(ProjectRoot)Samples\**\Bin\*.refresh"  />
 			<!-- Some .refresh files are only applicable to drop builds, so we rename them from *.refresh_ -->
 			<DropSamplesRefreshSourceFiles Include="$(ProjectRoot)Samples\**\*.refresh_" />
-			<DropSpecsSourceFiles Include="$(ProjectRoot)Doc\specs\*.htm*" />
 
 			<DropFiles Include="@(DropSourceFiles->'$(DropDirectory)%(RecursiveDir)%(FileName)%(Extension)')"/>
 			<DropBin35Files Include="@(DropBin35SourceFiles->'$(DropBin35Directory)%(RecursiveDir)%(FileName)%(Extension)')"/>
@@ -157,7 +145,6 @@
 			<DropSamplesFiles Include="@(DropSamplesSourceFiles->'$(DropSamplesDirectory)%(RecursiveDir)%(FileName)%(Extension)')"/>
 			<DropSamplesRefreshFiles Include="@(DropSamplesRefreshSourceFiles->'$(DropSamplesDirectory)%(RecursiveDir)%(FileName).refresh')"/>
 			<DropSamplesToolsProjects Include="$(DropSamplesDirectory)OpenIdOfflineProvider\OpenIdOfflineProvider.csproj" />
-			<DropSpecsFiles Include="@(DropSpecsSourceFiles->'$(DropSpecsDirectory)%(RecursiveDir)%(FileName)%(Extension)')"/>
 
 			<AllDropSources Include="
 										@(DropSourceFiles);
@@ -185,8 +172,7 @@
 										@(DropVsixFiles);
 										@(DropSamplesFiles);
 										@(DropSamplesRefreshFiles);
-										@(DropDocFiles);
-										@(DropSpecsFiles)
+										@(DropDocFiles)
 										" />
 
 			<DropSamplesFilesFixups Include="@(DropSamplesFiles)" Condition=" '%(Extension)' == '.aspx' ">

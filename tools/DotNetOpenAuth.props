@@ -29,7 +29,7 @@
 		<PublicKeyFile Condition="'$(PublicKeyFile)' == ''">$(ProjectRoot)src\official-build-key.pub</PublicKeyFile>
 		<AssemblyOriginatorKeyFile Condition="'$(AssemblyOriginatorKeyFile)' == ''">$(PublicKeyFile)</AssemblyOriginatorKeyFile>
 		<KeyPairContainer Condition="'$(KeyPairContainer)' == ''">DotNetOpenAuth</KeyPairContainer>
-		<PublicKeyToken>2780CCD10D57B246</PublicKeyToken>
+		<PublicKeyToken>f68c4adc7f7ba8c9</PublicKeyToken>
 		<DelaySign>true</DelaySign>
 		<SignedSubPath>signed\</SignedSubPath>
 

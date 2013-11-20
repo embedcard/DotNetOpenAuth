@@ -15,11 +15,7 @@
 			<Targets>DeployableArchive</Targets>
 			<Properties>TargetFrameworkVersion=v4.0</Properties>
 		</NightlyProjects>
-		<NightlyProjects Include="doc\doc.proj">
-			<Targets>DeployableArchive</Targets>
-			<Properties>TargetFrameworkVersion=v3.5</Properties>
-		</NightlyProjects>
-
+		
 		<ProjectsToClean Include="
 		                          $(SolutionPath);
 		                          projecttemplates\projecttemplates.proj;
