@@ -16,6 +16,9 @@
 			This allows your (web) application to issue identities or accept issued identites from other web applications, and even access your users'
 			data on other services.
 		</description>
+		<dependencies>
+			<dependency id="Validation" version="2.0.1" />
+		</dependencies>
 		<language>en-US</language>
 	</metadata>
 	<files>
