@@ -33,22 +33,7 @@
 		         Condition=" '%(DelaySignedProjects.Nonshipping)' != 'true' " />
 	</Target>
 
-	<Target Name="Layout" DependsOnTargets="LayoutDependencies">
-		<!-- Note that we use an MSBuild task for these dependencies rather than individual DependsOnTargets entries
-		     so that these builds can be executed in parallel. -->
-		<ItemGroup>
-			<ProjectsToBuild Include="
-							$(ProjectRoot)vsix\vsix.proj;
-							$(ProjectRoot)samples\samples.proj;
-							">
-				<Properties>TargetFrameworkVersion=v4.0</Properties>
-			</ProjectsToBuild>
-		</ItemGroup>
-		<MSBuild Projects="@(ProjectsToBuild)"
-						 Properties="%(ProjectsToBuild.Properties)"
-						 BuildInParallel="$(BuildInParallel)">
-			<Output TaskParameter="TargetOutputs" ItemName="DropLayoutDependencies"/>
-		</MSBuild>
+	<Target Name="Layout" DependsOnTargets="LayoutDependencies">		
 		<PropertyGroup>
 			<DropBin35Directory>$(DropDirectory)Bin-net3.5\</DropBin35Directory>
 			<DropBin40Directory>$(DropDirectory)Bin-net4.0\</DropBin40Directory>
